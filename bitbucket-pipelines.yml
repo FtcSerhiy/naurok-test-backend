@@ -14,5 +14,5 @@ pipelines:
       - step:
           name: Lint code
           script:
-            - pip install flake8
-            - flake8 . --extend-exclude=dist,build --show-source --statistics
+            - pip install autopep8
+            - autopep8 -i *.py -r -a
