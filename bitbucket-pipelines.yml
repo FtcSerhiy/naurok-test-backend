@@ -1,6 +1,6 @@
 image: python:3.8
 
-pipelines:
+pipeline:
   test:
     - parallel:
       - step:
