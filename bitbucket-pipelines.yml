@@ -1,7 +1,7 @@
 image: python:3.8
 
-pipeline:
-  test:
+pipelines:
+  default:
     - parallel:
       - step:
           name: Test
