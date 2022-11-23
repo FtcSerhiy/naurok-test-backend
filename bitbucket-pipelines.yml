@@ -27,17 +27,18 @@ pipelines:
           name: Download dependencies
           script:
             - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-            - pip install pytest autopep8
           caches:
             - pip
 
       - step:
           name: Test
           script:
+            - pip install pytest
             - pytest
 
       - step:
           name: Lint code
           script:
+            - pip install autopep8
             - autopep8 -i *.py -r -a
 
