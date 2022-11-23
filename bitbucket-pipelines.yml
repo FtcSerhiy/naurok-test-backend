@@ -22,7 +22,7 @@ pipelines:
     #                   HEROKU_APP_NAME: $HEROKU_APP_NAME
     #                   ZIP_FILE: complete.tar.gz
 
-    - test:
+    test:
       - step:
           name: Download dependencies
           script:
