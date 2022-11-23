@@ -14,22 +14,23 @@ def find(test_name: str, amount: int, subject: str, klass: int) -> list:
         page = filter_blocks(block, amount, test_name)
         if page is not None:
             result.append(page)
-    return result
+    if result is not None:
+        return result
+    raise NameError
 
 def filter_blocks(block: soup, amount: int, name: str) -> soup:
     link = block.find('div', attrs={'class': 'headline'}).a
-    if int(block.find('div', attrs={
-            'class': 'testCounter'}).text) == amount and link.text == name:
-        page = requests.get(f"http://naurok.com.ua{link['href']}").content
+    block_amount = block.find('div', attrs={
+            'class': 'testCounter'}).text
+    if int(block_amount) == amount and link.text == name:
+        page = requests.get(f"http://naurok.com.ua{link['href']}", headers=headers).content
         return soup(page, 'html.parser')
-    return None
 
 
 def filter_urls(page: soup) -> soup:
     for block in page.find_all('a', attrs={'class': 'test-action-button'}):
         if block.span.text == 'Роздрукувати':
             url = f"https://naurok.com.ua{block['href']}"
-            print(url)
             page = requests.get(url, headers=headers).content
             return soup(page, 'html.parser')
 
@@ -38,3 +39,12 @@ def get_urls(pages: list) -> list:
     url = [filter_urls(page) for page in pages]
     return url
 
+if __name__ == '__main__':
+    import key
+    name = input('Write test name: ')
+    amount = int(input('Write amount questions: '))
+    klass = int(input('Write your klass: '))
+    subject = input('Wrute this subject: ')
+
+    urls = get_urls(find(name, amount, subject, klass))
+    print(key.parse(urls[0]))

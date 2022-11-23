@@ -7,7 +7,9 @@ def parse(page: soup) -> dict:
     try:
         keys = get_keys(page.find('div', attrs={'class': 'answer-key'}))
     except AttributeError as err:
-        raise err
+        print(err)
+        print(page)
+        raise NameError
     answers = get_answers(page)
     requests = [
         get_requests(block) for block in page.find_all(
