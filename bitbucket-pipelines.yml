@@ -24,17 +24,13 @@ pipelines:
 
     test:
       - step:
-          name: Download dependencies
+          name: Download dependencies and Test
           script:
             - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          caches:
-            - pip
-
-      - step:
-          name: Test
-          script:
             - pip install pytest
             - pytest
+          caches:
+            - pip
 
       - step:
           name: Lint code
