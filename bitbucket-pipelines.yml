@@ -2,25 +2,25 @@ image: python:3.8
 
 pipelines:
   branches:
-    - main:
-        - step:
-            name: Build
-            script:
-              - git archive --format=tar.gz main -o complete.tar.gz
-            artifacts:
-              - complete.tar.gz
+    # - main:
+    #     - step:
+    #         name: Build
+    #         script:
+    #           - git archive --format=tar.gz main -o complete.tar.gz
+    #         artifacts:
+    #           - complete.tar.gz
 
-            - step:
-                name: Deploy to production
-                deployment: production
-                caches:
-                  - pip
-                script:
-                  - pipe: atlassian/heroku-deploy:0.1.1
-                    variables:
-                      HEROKU_API_KEY: $HEROKU_API_KEY
-                      HEROKU_APP_NAME: $HEROKU_APP_NAME
-                      ZIP_FILE: complete.tar.gz
+    #         - step:
+    #             name: Deploy to production
+    #             deployment: production
+    #             caches:
+    #               - pip
+    #             script:
+    #               - pipe: atlassian/heroku-deploy:0.1.1
+    #                 variables:
+    #                   HEROKU_API_KEY: $HEROKU_API_KEY
+    #                   HEROKU_APP_NAME: $HEROKU_APP_NAME
+    #                   ZIP_FILE: complete.tar.gz
 
     - test:
       - step:
@@ -36,3 +36,4 @@ pipelines:
           name: Lint code
           script:
             - autopep8 -i *.py -r -a
+
