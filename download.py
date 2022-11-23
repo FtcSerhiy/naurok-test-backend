@@ -4,10 +4,10 @@ import requests
 
 class Find:
     def __init__(self, test_name: str, amount: int, subject: str, klass: int):
-        self.name = name
+        self.name = test_name
         self.amount = amount
         code = requests.get(
-            f'https://naurok.com.ua/test/{subject}/klas-{klass}?q={test_name}').content
+            f'http://naurok.com.ua/test/{subject}/klas-{klass}?q={test_name}').content
         page = soup(code, 'html.parser')
         self.blocks = page.find_all(
             'div', attrs={'class': 'file-item test-item'})
@@ -24,7 +24,7 @@ class Find:
         link = block.find('div', attrs={'class': 'headline'}).a
         if int(block.find('div', attrs={
                'class': 'testCounter'}).text) == self.amount and link.text == self.name:
-            page = requests.get(f"https://naurok.com.ua{link['href']}").content
+            page = requests.get(f"http://naurok.com.ua{link['href']}").content
             return soup(page, 'html.parser')
         return None
 
@@ -32,9 +32,11 @@ class Find:
 def filter_urls(page: soup) -> soup:
     for block in page.find_all('a', attrs={'class': 'test-action-button'}):
         if block.span.text == 'Роздрукувати':
-            page = requests.get(f"https://naurok.com.ua{block['href']}", headers={
+            page = requests.get(f"http://naurok.com.ua{block['href']}", headers={
                                 'Cookie': 'PHPSESSID=2nc0tc2gqbbeemn61nfemg1rd2; _csrf=8ab9ca12f86b271ea575fe42fc372284fc7db05e89a439efd2989132e459fe41a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22dgNpBVPzDI4Gr0E8ddao2Oa_9k1YJukx%22%3B%7D; _identity=23639c2665c90ba1ba6dea203eb9824151caff7d10ad1028dff959c39de86effa%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A53%3A%22%5B1305266%2C%22TB14XanW7_64ZMZLD7YtrjyBD5s6rDWM%22%2C86313600%5D%22%3B%7D'}).content
-            return soup(page)
+            with open('data.html', 'wb') as f:
+                f.write(page)
+            return soup(page, 'html.parser')
 
 
 def get_urls(pages: list) -> list:

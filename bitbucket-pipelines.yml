@@ -1,18 +1,38 @@
 image: python:3.8
 
 pipelines:
-  default:
-    - parallel:
+  branches:
+    - main:
+        - step:
+            name: Build
+            script:
+              - git archive --format=tar.gz main -o complete.tar.gz
+            artifacts:
+              - complete.tar.gz
+
+            - step:
+                name: Deploy to production
+                deployment: production
+                caches:
+                  - pip
+                script:
+                  - pipe: atlassian/heroku-deploy:0.1.1
+                    variables:
+                      HEROKU_API_KEY: $HEROKU_API_KEY
+                      HEROKU_APP_NAME: $HEROKU_APP_NAME
+                      ZIP_FILE: complete.tar.gz
+
+    - test:
       - step:
-          name: Test
-          caches:
-            - pip
+          name: Download dependencies
           script:
             - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-            - pip install pytest
+            - pip install pytest autopep8
+          name: Test
+          script:
             - pytest
+
       - step:
           name: Lint code
           script:
-            - pip install autopep8
             - autopep8 -i *.py -r -a
