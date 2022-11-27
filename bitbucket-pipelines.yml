@@ -7,8 +7,8 @@ pipelines:
           name: Download dependencies and testing
           script:
             - pip install poetry -U
-            - poetry install --no-root
-            - pytest
+            - poetry install
+            - poetry run pytest
 
       - step:
           name: Deploy
