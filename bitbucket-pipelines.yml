@@ -4,6 +4,13 @@ pipelines:
   branches:
     main:
       - step:
+          name: Update poetry
+          script:
+            - pip install poetry -U
+          caches:
+            - poetry
+
+      - step:
           name: Download dependencies
           script:
             - poetry install --no-root
