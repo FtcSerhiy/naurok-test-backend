@@ -4,10 +4,11 @@ pipelines:
   branches:
     main:
       - step:
-          name: Download dependencies
+          name: Download dependencies and testing
           script:
             - pip install poetry -U
             - poetry install --no-root
+            - pytest
 
       - step:
           name: Deploy
