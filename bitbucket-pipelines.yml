@@ -1,24 +1,13 @@
-image: tomiolah1998/alpine-poetry:latest
+image: python:alpine
 
 pipelines:
   branches:
     main:
       - step:
-          name: Update poetry
-          script:
-            - pip install poetry -U
-          caches:
-            - pip
-
-      - step:
           name: Download dependencies
           script:
+            - pip install poetry -U
             - poetry install --no-root
-
-      - step:
-          name: Test code
-          script:
-            - pytest
 
       - step:
           name: Deploy
