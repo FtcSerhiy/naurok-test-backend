@@ -6,7 +6,7 @@ pipelines:
       - step:
           name: Download dependencies
           script:
-            - poetry install
+            - poetry install --no-root
 
       - step:
           name: Test code
