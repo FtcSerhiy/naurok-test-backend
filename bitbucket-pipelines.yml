@@ -8,7 +8,7 @@ pipelines:
           script:
             - pip install poetry -U
           caches:
-            - poetry
+            - pip
 
       - step:
           name: Download dependencies
