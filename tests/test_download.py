@@ -1,5 +1,5 @@
 import unittest
-import download
+from core import download
 from bs4 import BeautifulSoup as soup
 import requests
 

@@ -1,0 +1,8 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+startCommand = "uwsgi --http 0.0.0.0:8080 --wsgi-file server/app.py --callable __hug_wsgi__"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10

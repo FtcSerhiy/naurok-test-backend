@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup as soup
-import download
+from . import download
 
 
 def parse(page: soup) -> dict:

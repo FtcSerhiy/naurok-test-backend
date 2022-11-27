@@ -1,5 +1,5 @@
 import unittest
-import key
+from core import key
 from bs4 import BeautifulSoup as soup
 import requests
 

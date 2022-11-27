@@ -39,12 +39,12 @@ def get_urls(pages: list) -> list:
     url = [filter_urls(page) for page in pages]
     return url
 
-if __name__ == '__main__':
-    import key
-    name = input('Write test name: ')
-    amount = int(input('Write amount questions: '))
-    klass = int(input('Write your klass: '))
-    subject = input('Wrute this subject: ')
+# if __name__ == '__main__':
+#     import key
+#     name = input('Write test name: ')
+#     amount = int(input('Write amount questions: '))
+#     klass = int(input('Write your klass: '))
+#     subject = input('Wrute this subject: ')
 
-    urls = get_urls(find(name, amount, subject, klass))
-    print(key.parse(urls[0]))
+#     urls = get_urls(find(name, amount, subject, klass))
+#     print(key.parse(urls[0]))
