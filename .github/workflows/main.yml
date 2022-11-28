@@ -30,7 +30,7 @@ jobs:
           poetry-version: 1.2.2
 
       - name: Install dependencies
-        run: poetry install; ls
+        run: ls; poetry install
 
       - name: Testing
         run: poetry run pytest
