@@ -1,3 +1,5 @@
+branches: [ main, test ]
+
 pipelines:
   download_dependencies:
     image: python:latest
