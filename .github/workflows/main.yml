@@ -1,0 +1,29 @@
+name: CI
+
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install linter
+        script: pip3 install autopep8
+
+      - name: Lint
+        script: autopep8 -i *.py -r -a
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upgrade pip
+        script: pip3 install --upgrade pip
+
+      - name: Install poetry
+        script: poetry install
+
+      - name: Testing
+        script: poetry run pytest
+
