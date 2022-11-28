@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "naurok-test"
-version = "0.2.0"
+name = "naurok-test-backend"
+version = "1.2.0"
 description = "This project get requests for naurok tests"
 authors = ["Ftc Serhiy <ftcserhiy@gmail.com>"]
 readme = "README.md"
@@ -9,7 +9,7 @@ packages = [
 	{include = "server"},
 	{include = "core"}
 ]
-repository = "https://bitbucket.org/FtcSerhiy/naur.git"
+repository = "https://github.com/FtcSerhiy/naurok-test-backend.git"
 
 [tool.poetry.dependencies]
 python = "^3.10"
