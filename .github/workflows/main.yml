@@ -18,6 +18,8 @@ jobs:
   test:
     needs: lint
     runs-on: ubuntu-latest
+    container:
+      image: poetry/web:latest
     steps:
       - name: Upgrade pip
         run: pip3 install --upgrade pip
