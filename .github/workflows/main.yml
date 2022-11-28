@@ -19,14 +19,8 @@ jobs:
     needs: lint
     runs-on: ubuntu-latest
     container:
-      image: poetry/web:latest
+      image: fnndsc/python-poetry
     steps:
-      - name: Upgrade pip
-        run: pip3 install --upgrade pip
-
-      - name: Install poetry
-        run: pip install poetry
-
       - name: Install dependencies
         run: poetry install
 
