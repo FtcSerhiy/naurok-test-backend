@@ -43,6 +43,9 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Nodejs setup
         uses: actions/setup-node@v1
         with:
