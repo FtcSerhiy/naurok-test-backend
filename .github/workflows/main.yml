@@ -55,14 +55,12 @@ jobs:
         run: npm i -g @railway/cli
 
       - name: Set project link
-        run: |
-          echo RAILWAY_TOKEN
-          TOKEN=RAILWAY_TOKEN railway link 20db06f1-b811-475e-a7f9-6efcef7029a7
+        run: TOKEN=RAILWAY_TOKEN railway link 20db06f1-b811-475e-a7f9-6efcef7029a7
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
       - name: Deploy
-        run: TOKEN=token railway up
+        run: TOKEN=RAILWAY_TOKEN railway up
         env:
-          token: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         
