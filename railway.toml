@@ -3,6 +3,6 @@ builder = "dockerfile"
 dockerfilePath = "Dockerfile"
 
 [deploy]
-startCommand = "gunicorn --reload app:__hug_wsgi__"
+startCommand = "poetry run gunicorn --reload app:__hug_wsgi__"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
