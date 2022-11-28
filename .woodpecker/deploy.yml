@@ -1,0 +1,15 @@
+pipelines:
+  deploy:
+    image: node:latest
+    when:
+      branch: main
+    commands:
+      - npm i -g @railway/cli
+      - TOKEN=$${RAILWAY_TOKEN} railway link 20db06f1-b811-475e-a7f9-6efcef7029a7
+      - TOKEN=$${RAILWAY_TOKEN} railway up
+
+    secrets: [ railway_token ]
+
+depends_on:
+  - lint
+  - test

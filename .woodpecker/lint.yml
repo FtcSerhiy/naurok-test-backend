@@ -1,0 +1,6 @@
+pipelines:
+  lint:
+    image: python:latest
+    commands:
+      - pip install autopep8
+      - autopep8 -i *.py -r -a

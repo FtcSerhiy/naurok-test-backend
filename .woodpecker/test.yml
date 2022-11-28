@@ -1,0 +1,8 @@
+pipeline:
+  test:
+    image: python:latest
+    commands:
+      - pip install --upgrade pip
+      - pip install poetry
+      - poetry install
+      - poetry run pytest
