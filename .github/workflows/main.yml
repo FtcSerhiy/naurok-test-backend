@@ -19,6 +19,9 @@ jobs:
     needs: lint
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Set up Python 3.10.8
         uses: actions/setup-python@v4
         with:
@@ -30,10 +33,10 @@ jobs:
           poetry-version: 1.2.2
 
       - name: Install dependencies
-        run: ls
+        run: poetry install
 
-      # - name: Testing
-        # run: poetry run pytest
+      - name: Testing
+        run: poetry run pytest
 
   deploy:
     needs: test
@@ -49,9 +52,9 @@ jobs:
         run: npm i -g @railway/cli
 
       - name: Set project link
-        run: TOKEN=token railway link 20db06f1-b811-475e-a7f9-6efcef7029a7
+        run: TOKEN=RAILWAY_TOKEN railway link 20db06f1-b811-475e-a7f9-6efcef7029a7
         env:
-          token: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
       - name: Deploy
         run: TOKEN=token railway up
