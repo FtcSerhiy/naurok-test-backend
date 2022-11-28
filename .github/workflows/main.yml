@@ -48,7 +48,7 @@ jobs:
         script: npm i -g @railway/cli
 
       - name: Set environment
-        script: TOKEN=token railway link
+        script: TOKEN=token railway link 20db06f1-b811-475e-a7f9-6efcef7029a7
         with:
           token: ${{ secrets.RAILWAY_TOKEN }}
 
