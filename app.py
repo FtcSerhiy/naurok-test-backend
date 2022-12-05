@@ -6,7 +6,7 @@ api = hug.API(__name__)
 api.http.add_middleware(CORSMiddleware(api))
 
 @hug.post('/')
-def index(response, body=None):
+def index(response, body):
     name = body.get('name')
     amount = body.get('amount')
     subject = body.get('subject')
