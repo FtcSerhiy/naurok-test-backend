@@ -5,6 +5,7 @@ from core import download, key
 api = hug.API(__name__)
 api.http.add_middleware(CORSMiddleware(api))
 
+
 @hug.post('/')
 def index(response, body):
     name = body.get('name')
@@ -17,7 +18,7 @@ def index(response, body):
 
     return {'value': key.parse(urls[0])}
 
+
 @hug.get('/')
 def testsss():
     return 'ok'
-
