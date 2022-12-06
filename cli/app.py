@@ -2,8 +2,10 @@ import time
 from rich.console import Console
 from core import download, key
 from rich.table import Table
+from rich.__main__ import make_test_card
 import rich
 import sys
+from time import sleep
 
 def main():
     console = Console()
@@ -25,4 +27,5 @@ def main():
         for result in results:
             table.add_row(str(result.name), str(result.response))
 
+    with console.pager(styles=True):
         console.print(table)

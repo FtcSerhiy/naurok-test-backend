@@ -45,24 +45,24 @@ class TestKey(unittest.TestCase):
         answers = key.get_answers(soup(page, 'html.parser'))
         self.assertAlmostEqual(len(answers), 8)
 
-    def test_get_requests(self):
-        page = requests.get(
-            "https://naurok.com.ua/test/kontrolna-robota-1-vlastivosti-nerivnostey-liniyni-nerivnosti-ta-h-sistemi-1831724/print",
-            headers=self.headers).content
-        result = {
-            'а': "[8; +∞)\xa0\xa0\xa0",
-            'б': "[- 8; +∞)\xa0\xa0\xa0\xa0",
-            'в': "(-∞; 8]\xa0\xa0\xa0\xa0\xa0\xa0",
-            'г': "(-∞; -8]\xa0\xa0"}
-        self.assertAlmostEqual(
-            key.get_requests(
-                soup(
-                    page,
-                    'html.parser').find(
-                    'div',
-                    attrs={
-                        'class': 'question-options'})),
-            result)
+    # def test_get_requests(self):
+    #     page = requests.get(
+    #         "https://naurok.com.ua/test/kontrolna-robota-1-vlastivosti-nerivnostey-liniyni-nerivnosti-ta-h-sistemi-1831724/print",
+    #         headers=self.headers).content
+    #     result = {
+    #         'а': "[8; +∞)\xa0\xa0\xa0",
+    #         'б': "[- 8; +∞)\xa0\xa0\xa0\xa0",
+    #         'в': "(-∞; 8]\xa0\xa0\xa0\xa0\xa0\xa0",
+    #         'г': "(-∞; -8]\xa0\xa0"}
+    #     self.assertAlmostEqual(
+    #         key.get_requests(
+    #             soup(
+    #                 page,
+    #                 'html.parser').find(
+    #                 'div',
+    #                 attrs={
+    #                     'class': 'question-options'})),
+    #         result)
 
     def test_get_ref(self):
         block = '1. a (1 балл)'

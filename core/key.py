@@ -42,12 +42,11 @@ def get_ref(block: str) -> list:
 
 # get all answers from test
 def get_answers(page: soup) -> list:
-    return [e.find('div', attrs={'class': 'col-md-11 no-padding'}).text.replace('\n', ' ') for e in page.find_all(
+    answer = lambda e: [e.text.replace('\n', ' ') for e in e.find('div', attrs={'class': 'col-md-11 no-padding'}).find_all('p')]
+    return [answer(e) for e in page.find_all(
         'div', attrs={'class': 'entry-item question-view-item'})]
 
 # get all requests (use for loop)
-
-
 def get_requests(block: soup) -> dict:
     result = {}
     for e in block.find_all('div', attrs={'class': 'text-only-option'}):
