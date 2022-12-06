@@ -1,8 +1,8 @@
-FROM docker.io/frederikp/python-poetry-alpine
+FROM python:alpine
 
 COPY . .
 WORKDIR .
 
-RUN poetry -V && poetry install
+RUN pip install poetry --upgrade pip && poetry install
 
 CMD ["poetry", "run", "gunicorn", "server.app:app"]
