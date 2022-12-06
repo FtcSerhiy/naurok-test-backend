@@ -25,7 +25,7 @@ jobs:
       - name: Testing
         run: poetry run pytest
 
-  deploy:
+  build:
     needs: test
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -36,6 +36,11 @@ jobs:
       - name: Build docker image
         run: docker build -t ghcr.io/ftcserhiy/naurok-backend .
 
+      - name: Login to registry
+        run: echo $TOKEN | docker login ghcr.io -u ftcserhiy --password-stdin
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
       - name: Push docker image
         run: docker push ghcr.io/ftcserhiy/naurok-backend:latest
-        
+
