@@ -17,12 +17,12 @@ def main():
         pages = download.find(test_name, amount, subject, klas)
         url = download.get_urls(pages)[0]
 
-        obj = key.parse(url)
+        results = key.parse(url)
         table = Table(title='[bold green]Responses')
         table.add_column('Names', style="cyan")
         table.add_column('Responses', style='green')
 
-        for name in list(obj.keys()):
-            table.add_row(name, str(obj[name]))
+        for result in results:
+            table.add_row(str(result.name), str(result.response))
 
         console.print(table)

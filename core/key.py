@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup as soup
 from . import download
+from .data import Key
 
-
-def parse(page: soup) -> dict:
-    result = {}
+def parse(page: soup) -> list:
+    result = []
     try:
         keys = get_keys(page.find('div', attrs={'class': 'answer-key'}))
     except AttributeError as err:
@@ -18,7 +18,7 @@ def parse(page: soup) -> dict:
 
     for i in range(len(keys)):
         response = [requests[i][e] for e in keys[i]]
-        result.update({answers[i]: response})
+        result.append(Key(answers[i], response))
 
     return result
 
@@ -42,7 +42,7 @@ def get_ref(block: str) -> list:
 
 # get all answers from test
 def get_answers(page: soup) -> list:
-    return [e.find('div', attrs={'class': 'col-md-11 no-padding'}).p.text for e in page.find_all(
+    return [e.find('div', attrs={'class': 'col-md-11 no-padding'}).text.replace('\n', ' ') for e in page.find_all(
         'div', attrs={'class': 'entry-item question-view-item'})]
 
 # get all requests (use for loop)
@@ -53,5 +53,6 @@ def get_requests(block: soup) -> dict:
     for e in block.find_all('div', attrs={'class': 'text-only-option'}):
         letter = e.find('div', attrs={'class': 'option-letter'}).text[:-1]
         result.update(
-            {letter: e.find('div', attrs={'class': 'option-text'}).p.text})
+            {letter: e.find('div', attrs={'class': 'option-text'}).text})
     return result
+
