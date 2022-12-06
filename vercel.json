@@ -1,4 +1,0 @@
-{
-  "installCommand": "docker pull",
-  "runCommand": "docker run"
-}
