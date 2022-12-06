@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block main %}
+		<form action="/form" class="one" method="POST">
+			<h3>Complete your naurok test</h3>
+			<section>
+				<label for="name">Напишіть ім'я тесту:*</label>
+				<input
+					type="text"
+					id="name"
+					placeholder="Напишіть ім'я тесту..."
+					name="test_name"
+				>
+			</section>
+			<section>
+				<label for="amount">Напишіть кількість запитань:*</label>
+				<input
+					type="number"
+					id="amount"
+					placeholder="Напишіть кількість запитань..."
+					name="amount"
+				>
+			</section>
+			<section>
+			<section>
+				<select id="subject" name="subject">
+					<option value="">Оберіть предмет...</option>
+					<option value="algebra">Алгебра</option>
+					<option value="angliyska-mova">Англійська мова</option>
+					<option value="astronomiya">Астрономія</option>
+					<option value="biologiya">Біологія</option>
+					<option value="vsesvitnya-istoriya">Всесвітня історія</option>
+					<option value="geografiya">Географія</option>
+					<option value="geometriya">Геометрія</option>
+					<option value="gromadyanska-osvita">Громадянська освіта</option>
+					<option value="ekologiya">Екологія</option>
+					<option value="ekonomika">Економіка</option>
+					<option value="etika">Етика</option>
+					<option value="zarubizhna-literatura">Зарубіжна література</option>
+					<option value="zahist-vitchizni">Захист України</option>
+					<option value="informatika">Інформатика</option>
+					<option value="ispanska-mova">Іспанська мова</option>
+					<option value="istoriya-ukra-ni">Історія України</option>
+					<option value="kreslennya">Креслення</option>
+					<option value="literaturne-chitannya">Літературне читання</option>
+					<option value="lyudina-i-svit">Людина і світ</option>
+					<option value="matematika">Математика</option>
+					<option value="mistectvo">Мистецтво</option>
+					<option value="movi-nacionalnih-menshin">Мови національних меншин</option>
+					<option value="muzichne-mistectvo">Музичне мистецтво</option>
+					<option value="navchannya-gramoti">Навчання грамоти</option>
+					<option value="nimecka-mova">Німецька мова</option>
+					<option value="obrazotvorche-mistectvo">Образотворче мистецтво</option>
+					<option value="osnovi-zdorov-ya">Основи здоров’я</option>
+					<option value="polska-mova">Польська мова</option>
+					<option value="pravoznavstvo">Правознавство</option>
+					<option value="prirodnichi-nauki">Природничі науки</option>
+					<option value="prirodoznavstvo">Природознавство</option>
+					<option value="tehnologi">Технології</option>
+					<option value="trudove-navchannya">Трудове навчання</option>
+					<option value="ukrainska-literatura">Українська література</option>
+					<option value="ukrainska-mova">Українська мова</option>
+					<option value="fizika">Фізика</option>
+					<option value="fizichna-kultura">Фізична культура</option>
+					<option value="francuzka-mova">Французька мова</option>
+					<option value="himiya">Хімія</option>
+					<option value="hudozhnya-kultura">Художня культура</option>
+					<option value="ya-doslidzhuyu-svit">Я досліджую світ</option>
+				</select>
+			</section>
+
+			<button type="submit">Знайти відповіді</button>
+		</form>
+	</main>
+{% endblock %}

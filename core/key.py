@@ -17,8 +17,8 @@ def parse(page: soup) -> list:
                 'class': 'question-options'})]
 
     for i in range(len(keys)):
-        response = [requests[i][e] for e in keys[i]]
-        result.append(Key(answers[i], response))
+        # response = [requests[i][e] for e in keys[i]]
+        result.append(Key(answers[i], keys[i]))
 
     return result
 

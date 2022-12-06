@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Complete naurok tests</title>
+	<link rel="icon" href= "{{ url_for('static', filename='nav.png') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+</head>
+<body>
+	<header>
+		<nav><img alt="" width="40" src="{{ url_for('static', filename='logo.png') }}"></nav>
+	</header>
+	<main>
+		{% block main %}{% endblock %}
+	</main>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block main %}
+	{% for response in responses %}
+		<div class="block">
+			<div class="name">{{response.name}}</div>
+			<div class="response">{{response.response}}</div>
+		</div>
+	{% endfor %}
+{% endblock %}

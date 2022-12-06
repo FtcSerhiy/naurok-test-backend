@@ -1,23 +1,26 @@
-import hug
-from hug.middleware import CORSMiddleware
+from flask import render_template, Flask, request
+from core.data import Key
 from core import download, key
 
-api = hug.API(__name__)
-api.http.add_middleware(CORSMiddleware(api))
+app = Flask('naurok test backend')
 
-@hug.post('/')
-def index(response, body=None):
-    name = body.get('name')
-    amount = body.get('amount')
-    subject = body.get('subject')
-    klass = body.get('klass')
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-    page = download.find(str(name), int(amount), str(subject), int(klass))
-    urls = download.get_urls(page)
+@app.route('/form', methods=['POST'])
+def form():
+    test_name = str(request.form['test_name'])
+    klas = 9
+    amount = int(request.form['amount'])
+    subject = str(request.form['subject'])
 
-    return {'value': key.parse(urls[0])}
+    pages = download.find(test_name, amount, subject, klas)
+    url = download.get_urls(pages)[0]
+    results = key.parse(url)
 
-@hug.get('/')
-def testsss():
-    return 'ok'
+    return render_template('result.html', responses=results)
 
+
+if __name__ == '__main__':
+    app.run()
