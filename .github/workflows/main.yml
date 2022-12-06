@@ -3,18 +3,6 @@ name: CI
 on: push
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Install linter
-        run: pip3 install autopep8
-
-      - name: Lint
-        run: autopep8 -i *.py -r -a
-
   test:
     needs: lint
     runs-on: ubuntu-latest
