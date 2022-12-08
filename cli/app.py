@@ -10,10 +10,14 @@ from time import sleep
 def main():
     console = Console()
 
+    if sys.argv[1] == '--help' or sys.argv[1] == 'h':
+        console.print('[bold yellow] How use App?')
+        console.print('\n[bold yellow] use cli \'test name\' klas subject amount')
+
     test_name = sys.argv[1]
     subject = sys.argv[2]
-    klas = 9
-    amount = int(sys.argv[3])
+    klas = int(sys.argv[3])
+    amount = int(sys.argv[4])
     
     with console.status('[bold green]get keys', spinner='point'):
         pages = download.find(test_name, amount, subject, klas)
