@@ -10,17 +10,21 @@ def index():
 
 @app.route('/form', methods=['POST'])
 def form():
-    test_name = str(request.form['test_name'])
-    klas = 9
-    amount = int(request.form['amount'])
-    subject = str(request.form['subject'])
+    try:
+        test_name = str(request.form['test_name'])
+        klas = 9
+        amount = int(request.form['amount'])
+        subject = str(request.form['subject'])
 
-    pages = download.find(test_name, amount, subject, klas)
-    url = download.get_urls(pages)[0]
-    results = key.parse(url)
+        pages = download.find(test_name, amount, subject, klas)
+        url = download.get_urls(pages)[0]
+        results = key.parse(url)
+    except * as err:
+        return render_template('result.html', err=err)
 
     return render_template('result.html', responses=results)
 
 
 if __name__ == '__main__':
     app.run()
+

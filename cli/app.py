@@ -6,6 +6,7 @@ from rich.__main__ import make_test_card
 import rich
 import sys
 from time import sleep
+from bs4 import BeautifulSoup as soup
 
 def main():
     console = Console()
@@ -21,8 +22,7 @@ def main():
     
     with console.status('[bold green]get keys', spinner='point'):
         pages = download.find(test_name, amount, subject, klas)
-        url = download.get_urls(pages)[0]
-
+        url = soup(open('data.html', 'r'))
         results = key.parse(url)
         table = Table(title='[bold green]Responses')
         table.add_column('Names', style="cyan")
