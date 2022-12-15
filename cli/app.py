@@ -22,7 +22,7 @@ def main():
     
     with console.status('[bold green]get keys', spinner='point'):
         pages = download.find(test_name, amount, subject, klas)
-        url = soup(open('data.html', 'r'))
+        url = download.get_urls(pages[0])
         results = key.parse(url)
         table = Table(title='[bold green]Responses')
         table.add_column('Names', style="cyan")

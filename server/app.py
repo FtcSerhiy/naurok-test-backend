@@ -19,8 +19,8 @@ def form():
         pages = download.find(test_name, amount, subject, klas)
         url = download.get_urls(pages)[0]
         results = key.parse(url)
-    except * as err:
-        return render_template('result.html', err=err)
+    except:
+        return render_template('result.html', err='some error')
 
     return render_template('result.html', responses=results)
 
