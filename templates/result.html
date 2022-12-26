@@ -3,8 +3,16 @@
 {% block main %}
 	{% for response in responses %}
 		<div class="block">
-			<div class="name">{{response.name}}</div>
-			<div class="response">{{response.response}}</div>
+            <div class="name">
+            {% for name in response.name %}
+            <p>{{name}}</p>
+            {% endfor %}
+            </div>
+            <div class="response">
+            {% for response in response.response %}
+                <p>{{response}}</p>
+            {% endfor %}
+            </div>
 		</div>
 	{% endfor %}
         <div class="block">

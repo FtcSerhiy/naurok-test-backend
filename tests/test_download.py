@@ -9,11 +9,12 @@ class TestDownload(unittest.TestCase):
         response = download.find('Контрольна робота № 1: "Властивості нерівностей. Лінійні нерівності та їх системи"', 8, 'algebra', 9)
 
     def test_filter_blocks(self):
-        page = requests.get('https://naurok.com.ua/test/algebra/klas-9?q=Вектори').content
+        page = requests.get('https://naurok.com.ua/test/algebra/klas-9?q=Вектори.').content
         response = download.filter_blocks(soup(page, 'html.parser').find('div', attrs={'class':'file-item test-item'}), 6, 'Вектори.')
-        f = open('data.html', 'w')
-        f.write(str(response))
-        f.close()
+        # assert response != None, 'errr'
+        # with open('data.html', 'wb') as f:
+            # print(response)
+            # f.write(response)
 
     def test_filter_urls(self):
         url = 'https://naurok.com.ua/test/vektori-1423805.html'
