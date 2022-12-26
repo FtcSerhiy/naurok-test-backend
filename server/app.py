@@ -10,19 +10,19 @@ def index():
 
 @app.route('/form', methods=['POST'])
 def form():
+    test_name = str(request.form['test_name'])
+    klas = 9
+    amount = int(request.form['amount'])
+    subject = str(request.form['subject'])
+
+    pages = download.find(test_name, amount, subject, klas)
     try:
-        test_name = str(request.form['test_name'])
-        klas = 9
-        amount = int(request.form['amount'])
-        subject = str(request.form['subject'])
-
-        pages = download.find(test_name, amount, subject, klas)
         url = download.get_urls(pages)[0]
-        results = key.parse(url)
-    except:
-        return render_template('result.html', err='some error')
+    except IndexError as err:
+        return render_template('result.html', err=err)
+    results = key.parse(url)
 
-    return render_template('result.html', responses=results)
+    return render_template('result.html', responses=results, err=None)
 
 
 if __name__ == '__main__':

@@ -15,7 +15,7 @@
             </div>
 		</div>
 	{% endfor %}
-        <div class="block">
-            {{err}}
-        </div>
+    {% if err != None %}
+        <script>alert('Test not found')</script>
+    {% endif %}
 {% endblock %}
